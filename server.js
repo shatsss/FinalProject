@@ -22,11 +22,9 @@ app.post('/write', function (req, res) {
     var body = '';
 
     req.on('data', function (data) {
-        body += data;
+        body += data.toString().split("=")[1];
         console.log(body);
-        //  res.render('index.jade', { title: body });
-        fs.appendFile(filePath, body + "\r\n", function () {
-        });
+        fs.appendFile(filePath, body + "\r\n", function () {});
         fs.readFile(filePath, "utf8", function (err, data) {
             if (err) throw err;
             //do operation on data that generates say r esultArray;
@@ -35,19 +33,15 @@ app.post('/write', function (req, res) {
             //
             var response = "<b>Hello from my http server!!</b>";
             response += "<p>Total awesome: " + "</p>";
-            response += "<p>Total cool: " +  "</p>";
+            response += "<p>Total cool: " + "</p>";
             response += "<ul>";
-            for (var i = 0; i < splitArr.length; i++){
-                response += "<li> " + splitArr[i]+ "</li>"
+            for (var i = 0; i < splitArr.length; i++) {
+                response += "<li> " + splitArr[i] + "</li>"
             }
             response += "</ul>";
             res.writeHead(200, {"Content-Type": "text/html"});
             res.end(response);
-            //
-         //   res.sendFile('BlogHtml.html', {root: __dirname })
 
-            //res.send(data);
-//            return resultArray;
         });
     });
 });
