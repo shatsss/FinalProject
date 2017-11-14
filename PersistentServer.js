@@ -13,7 +13,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('public'));
 
 app.get('/', function (req, res) {
-
     res.sendFile(__dirname + "/PersistentHomePage.html");
     //  res.send('Hello World');
 });
@@ -36,7 +35,7 @@ app.post('/write', function (req, res) {
             response += "<p>Total cool: " + "</p>";
             response += "<ul>";
             for (var i = 0; i < splitArr.length; i++) {
-                response += "<li> " + splitArr[i] + "</li>"
+                    response += "<li> " + splitArr[i] + "</li>"
             }
             response += "</ul>";
             res.writeHead(200, {"Content-Type": "text/html"});

@@ -13,15 +13,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('public'));
 
 app.get('/search', function (req, res) {
-  //  res.setEncoding('utf8');
+    //  res.setEncoding('utf8');
     //res.enctype="text/plain";
-    res.charset = "utf8";
-    var keyword = req.param('keyword');
-    console.log(keyword);
+   // res.charset = "utf8";
+
+   var keyword = req.param('keyword');
+  /*  console.log(keyword);
     var response = "<b>Hello from my http server!!</b>";
     response += "<p>You searched for: <em></em>" + "</p>";
-    response += "<script> var keyword=location.search.substring(6);document.querySelector('em').innerHTML.enctype = 'text/plain';document.querySelector('em').innerHTML=keyword;</script>";
-    res.writeHead(200, {"Content-Type": "text/html" });
+    response += "<script> var keyword=location.search.substring(9);" + "document.querySelector('em').innerHTML = keyword ;</script>";*/
+    var response = '<script> document.write("<OPTION value=1>"+document.location.href.substring(document.location.href.indexOf("keyword=")+8)+"</OPTION>");'
+    + 'document.write("<OPTION value=2>English</OPTION>");</script>';
+    res.writeHead(200, {"Content-Type": "text/html"});
     res.end(response);
 });
 
